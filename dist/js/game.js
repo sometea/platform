@@ -3,7 +3,7 @@
 
 //global variables
 window.onload = function () {
-  var game = new Phaser.Game(900, 600, Phaser.AUTO, 'platform');
+  var game = new Phaser.Game(600, 400, Phaser.AUTO, 'platform');
 
   // Game States
   game.state.add('boot', require('./states/boot'));
@@ -78,10 +78,10 @@ module.exports = GameOver;
       this.game.physics.startSystem(Phaser.Physics.ARCADE);
       this.game.add.image(0, 0, 'background');
       this.mainguy = this.game.add.sprite(0, 0, 'mainguy');
-      this.mainguy.scale.setTo(2,2);
+      // this.mainguy.scale.setTo(2,2);
       this.mainguy.anchor.setTo(.5,.5);
       this.ball = this.game.add.sprite(100, 0, 'ball');
-      this.ball.scale.setTo(2,2);
+      // this.ball.scale.setTo(2,2);
       this.platforms = this.game.add.group();
       this.platforms.enableBody = true;
       for (var i=0; i<4; i++) {
