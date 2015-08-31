@@ -14,7 +14,48 @@ window.onload = function () {
 
   game.state.start('boot');
 };
-},{"./states/boot":2,"./states/gameover":3,"./states/play":4,"./states/preload":5}],2:[function(require,module,exports){
+},{"./states/boot":4,"./states/gameover":5,"./states/play":6,"./states/preload":7}],2:[function(require,module,exports){
+'use strict';
+
+var Ball = function(_game) {
+  this.game = _game;
+  this.sprite = this.game.add.sprite(100, 0, 'ball');
+  this.game.physics.arcade.enable(this.sprite);
+  this.sprite.body.bounce.y = 0.7;
+  this.sprite.body.bounce.x = 0.7;
+  this.sprite.body.gravity.y = 700;
+  this.sprite.body.collideWorldBounds = true;
+  this.sprite.body.mass = 0.1;
+};
+
+Ball.prototype.getSprite = function () {
+  return this.sprite;
+}
+
+module.exports = Ball;
+
+},{}],3:[function(require,module,exports){
+'use strict';
+
+var MainGuy = function (_game) {
+  this.game = _game;
+  this.sprite = this.game.add.sprite(0, 0, 'mainguy');
+  this.sprite.anchor.setTo(.5,.5);
+  this.game.physics.arcade.enable(this.sprite);
+  this.sprite.body.bounce.y = 0.2;
+  this.sprite.body.gravity.y = 700;
+  this.sprite.body.collideWorldBounds = true;
+  this.sprite.animations.add('left', [1, 2], 10, true);
+  this.sprite.animations.add('right', [1, 2], 10, true);
+};
+
+MainGuy.prototype.getSprite = function () {
+  return this.sprite;
+}
+
+module.exports = MainGuy;
+
+},{}],4:[function(require,module,exports){
 
 'use strict';
 
@@ -41,7 +82,7 @@ Boot.prototype = {
 
 module.exports = Boot;
 
-},{}],3:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 
 'use strict';
 function GameOver() {}
@@ -69,19 +110,23 @@ GameOver.prototype = {
 };
 module.exports = GameOver;
 
-},{}],4:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 
   'use strict';
-  function Play() {}
+
+  var MainGuy = require('../objects/mainguy');
+  var Ball = require('../objects/ball');
+
+  function Play() {};
+
   Play.prototype = {
     create: function() {
       this.game.physics.startSystem(Phaser.Physics.ARCADE);
       this.game.add.image(0, 0, 'background');
-      this.mainguy = this.game.add.sprite(0, 0, 'mainguy');
-      // this.mainguy.scale.setTo(2,2);
-      this.mainguy.anchor.setTo(.5,.5);
-      this.ball = this.game.add.sprite(100, 0, 'ball');
-      // this.ball.scale.setTo(2,2);
+      this.mainguy = new MainGuy(this.game);
+      this.mainguy = this.mainguy.getSprite();
+      this.ball = new Ball(this.game);
+      this.ball = this.ball.getSprite();
       this.platforms = this.game.add.group();
       this.platforms.enableBody = true;
       for (var i=0; i<4; i++) {
@@ -89,19 +134,6 @@ module.exports = GameOver;
         block.scale.setTo(10, 1);
         block.body.immovable = true;
       }
-
-      this.game.physics.arcade.enable(this.mainguy);
-      this.game.physics.arcade.enable(this.ball);
-      this.mainguy.body.bounce.y = 0.2;
-      this.mainguy.body.gravity.y = 700;
-      this.mainguy.body.collideWorldBounds = true;
-      this.mainguy.animations.add('left', [1, 2], 10, true);
-      this.mainguy.animations.add('right', [1, 2], 10, true);
-      this.ball.body.bounce.y = 0.7;
-      this.ball.body.bounce.x = 0.7;
-      this.ball.body.gravity.y = 700;
-      this.ball.body.collideWorldBounds = true;
-      this.ball.body.mass = 0.1;
 
       this.cursors = this.game.input.keyboard.createCursorKeys();
     },
@@ -135,7 +167,7 @@ module.exports = GameOver;
 
   module.exports = Play;
 
-},{}],5:[function(require,module,exports){
+},{"../objects/ball":2,"../objects/mainguy":3}],7:[function(require,module,exports){
 
 'use strict';
 function Preload() {
