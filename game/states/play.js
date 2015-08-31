@@ -26,10 +26,9 @@
     },
 
     update: function() {
+      this.game.physics.arcade.collide(this.mainguy, this.ball);
       this.game.physics.arcade.collide(this.mainguy, this.platforms);
       this.game.physics.arcade.collide(this.ball, this.platforms);
-      this.game.physics.arcade.collide(this.mainguy, this.ball);
-      this.mainguy.body.velocity.x = 0;
       if (this.cursors.left.isDown) {
         this.mainguy.body.velocity.x = -150;
         if (this.mainguy.scale.x > 0) this.mainguy.scale.x = - this.mainguy.scale.x;

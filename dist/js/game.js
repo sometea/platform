@@ -24,6 +24,7 @@ var Ball = function(_game) {
   this.sprite.body.bounce.y = 0.7;
   this.sprite.body.bounce.x = 0.7;
   this.sprite.body.gravity.y = 700;
+  this.sprite.body.drag.x = 50;
   this.sprite.body.collideWorldBounds = true;
   this.sprite.body.mass = 0.1;
 };
@@ -45,6 +46,8 @@ var MainGuy = function (_game) {
   this.sprite.body.bounce.y = 0.2;
   this.sprite.body.gravity.y = 700;
   this.sprite.body.collideWorldBounds = true;
+  this.sprite.body.drag.x = 400;
+  this.sprite.body.mass = 1;
   this.sprite.animations.add('left', [1, 2], 10, true);
   this.sprite.animations.add('right', [1, 2], 10, true);
 };
@@ -139,10 +142,9 @@ module.exports = GameOver;
     },
 
     update: function() {
+      this.game.physics.arcade.collide(this.mainguy, this.ball);
       this.game.physics.arcade.collide(this.mainguy, this.platforms);
       this.game.physics.arcade.collide(this.ball, this.platforms);
-      this.game.physics.arcade.collide(this.mainguy, this.ball);
-      this.mainguy.body.velocity.x = 0;
       if (this.cursors.left.isDown) {
         this.mainguy.body.velocity.x = -150;
         if (this.mainguy.scale.x > 0) this.mainguy.scale.x = - this.mainguy.scale.x;

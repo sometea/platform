@@ -7,6 +7,7 @@ var Ball = function(_game) {
   this.sprite.body.bounce.y = 0.7;
   this.sprite.body.bounce.x = 0.7;
   this.sprite.body.gravity.y = 700;
+  this.sprite.body.drag.x = 50;
   this.sprite.body.collideWorldBounds = true;
   this.sprite.body.mass = 0.1;
 };
