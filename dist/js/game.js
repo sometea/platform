@@ -130,6 +130,11 @@ module.exports = GameOver;
       this.mainguy = this.mainguy.getSprite();
       this.ball = new Ball(this.game);
       this.ball = this.ball.getSprite();
+
+      this.map = this.game.add.tilemap('tilemap');
+      this.map.addTilesetImage('scifi', 'tileset');
+      this.blockLayer = this.map.createLayer('blocks', this.game.width, this.game.height);
+
       this.platforms = this.game.add.group();
       this.platforms.enableBody = true;
       for (var i=0; i<4; i++) {
@@ -181,6 +186,8 @@ Preload.prototype = {
   preload: function() {
     this.load.onLoadComplete.addOnce(this.onLoadComplete, this);
     this.load.spritesheet('mainguy', 'assets/mainguy.png', 23, 25);
+    this.load.tilemap('tilemap', 'assets/tilemap.json', null, Phaser.Tilemap.TILED_JSON);
+    this.load.image('tileset', 'assets/tileset.png');
     this.load.image('background', 'assets/background.png');
     this.load.image('block', 'assets/block.png');
     this.load.image('ball', 'assets/ball.png');
