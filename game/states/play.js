@@ -17,7 +17,9 @@
 
       this.map = this.game.add.tilemap('tilemap');
       this.map.addTilesetImage('scifi', 'tileset');
-      this.blockLayer = this.map.createLayer('blocks', this.game.width, this.game.height);
+      this.map.setCollisionBetween(0,220);
+      this.blockLayer = this.map.createLayer('blocks');
+      //this.blockLayer.debug = true;
 
       this.platforms = this.game.add.group();
       this.platforms.enableBody = true;
@@ -34,6 +36,8 @@
       this.game.physics.arcade.collide(this.mainguy, this.ball);
       this.game.physics.arcade.collide(this.mainguy, this.platforms);
       this.game.physics.arcade.collide(this.ball, this.platforms);
+      this.game.physics.arcade.collide(this.mainguy, this.blockLayer);
+      this.game.physics.arcade.collide(this.ball, this.blockLayer);
       if (this.cursors.left.isDown) {
         this.mainguy.body.velocity.x = -150;
         if (this.mainguy.scale.x > 0) this.mainguy.scale.x = - this.mainguy.scale.x;
@@ -48,7 +52,7 @@
         this.mainguy.animations.stop();
         this.mainguy.frame = 0;
       }
-      if (this.cursors.up.isDown && this.mainguy.body.touching.down) this.mainguy.body.velocity.y = -350;
+      if (this.cursors.up.isDown && (this.mainguy.body.onFloor() || this.mainguy.body.touching.down)) this.mainguy.body.velocity.y = -350;
     },
 
     clickListener: function() {

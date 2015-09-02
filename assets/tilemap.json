@@ -1,15 +1,13 @@
-{ "height":100,
+{ "height":10,
  "layers":[
         {
-         "compression":"zlib",
-         "data":"eJzt3AEKgzAQBMD8\/3v9UJFSKBjaBIq5jTPgB7KQvVOwNYA8j4kHAIAx5ioA\/uWzO3RKDc6fO5udcd1Za4ycuTwAOMx8J9TnALzpiPpkBGbaJHIBoMd7qizyAOAXXVGL74NAMvfVtZxxbTocAPZgRwfgG72QQTYAkMtODgD70u\/AavaNPPKAF3cXAOxFd9diVwSgRzdkkQtQ0ex\/ZNxlAABnZioAVtAn3InZKo9cgKs9AaHIzTw=",
-         "encoding":"base64",
-         "height":100,
+         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 211, 211, 211, 211, 211, 0, 0, 0, 0, 0, 0, 0, 0, 0, 211, 0, 0, 0, 211, 211, 211, 211, 211, 211, 211, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 211, 211, 211, 211, 211, 211, 211, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 211, 211],
+         "height":10,
          "name":"blocks",
          "opacity":1,
          "type":"tilelayer",
          "visible":true,
-         "width":100,
+         "width":10,
          "x":0,
          "y":0
         }],
@@ -24,7 +22,7 @@
  "tilesets":[
         {
          "firstgid":1,
-         "image":"scifi_platformTiles_32x32.png",
+         "image":"..\/..\/projects\/platform\/ignored\/scifi_platformTiles_32x32.png",
          "imageheight":736,
          "imagewidth":1120,
          "margin":0,
@@ -40,5 +38,5 @@
         }],
  "tilewidth":32,
  "version":1,
- "width":100
+ "width":10
 }
