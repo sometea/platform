@@ -25,6 +25,7 @@ var Ball = function(_game) {
   this.sprite.body.bounce.x = 0.7;
   this.sprite.body.gravity.y = 700;
   this.sprite.body.drag.x = 50;
+  this.sprite.body.maxVelocity = new Phaser.Point(500, 500);
   this.sprite.body.collideWorldBounds = true;
   this.sprite.body.mass = 0.1;
 };
@@ -48,6 +49,7 @@ var MainGuy = function (_game) {
   this.sprite.body.collideWorldBounds = true;
   this.sprite.body.drag.x = 400;
   this.sprite.body.mass = 1;
+  this.sprite.body.maxVelocity = new Phaser.Point(500, 500);
   this.sprite.animations.add('left', [1, 2], 10, true);
   this.sprite.animations.add('right', [1, 2], 10, true);
 };
@@ -125,7 +127,8 @@ module.exports = GameOver;
   Play.prototype = {
     create: function() {
       this.game.physics.startSystem(Phaser.Physics.ARCADE);
-      this.game.add.image(0, 0, 'background');
+      var b = this.game.add.image(0, 0, 'background');
+      b.fixedToCamera = true;
       this.mainguy = new MainGuy(this.game);
       this.mainguy = this.mainguy.getSprite();
       this.ball = new Ball(this.game);
@@ -135,7 +138,8 @@ module.exports = GameOver;
       this.map.addTilesetImage('scifi', 'tileset');
       this.map.setCollisionBetween(0,220);
       this.blockLayer = this.map.createLayer('blocks');
-      //this.blockLayer.debug = true;
+      this.blockLayer.resizeWorld();
+      this.game.camera.follow(this.mainguy);
 
       this.platforms = this.game.add.group();
       this.platforms.enableBody = true;

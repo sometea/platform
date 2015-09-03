@@ -10,6 +10,7 @@ var MainGuy = function (_game) {
   this.sprite.body.collideWorldBounds = true;
   this.sprite.body.drag.x = 400;
   this.sprite.body.mass = 1;
+  this.sprite.body.maxVelocity = new Phaser.Point(500, 500);
   this.sprite.animations.add('left', [1, 2], 10, true);
   this.sprite.animations.add('right', [1, 2], 10, true);
 };
