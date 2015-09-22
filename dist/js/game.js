@@ -17,46 +17,52 @@ window.onload = function () {
 },{"./states/boot":4,"./states/gameover":5,"./states/play":6,"./states/preload":7}],2:[function(require,module,exports){
 'use strict';
 
-var Ball = function(_game) {
-  this.game = _game;
-  this.sprite = this.game.add.sprite(100, 0, 'ball');
-  this.game.physics.arcade.enable(this.sprite);
-  this.sprite.body.bounce.y = 0.7;
-  this.sprite.body.bounce.x = 0.7;
-  this.sprite.body.gravity.y = 700;
-  this.sprite.body.drag.x = 50;
-  this.sprite.body.maxVelocity = new Phaser.Point(500, 500);
-  this.sprite.body.collideWorldBounds = true;
-  this.sprite.body.mass = 0.1;
+var Ball = function(game, x, y, key) {
+  Phaser.Sprite.call(this, game, x, y, key);
+  // this.sprite = this.game.add.sprite(100, 0, 'ball');
+  game.physics.arcade.enable(this);
+  this.body.bounce.y = 0.7;
+  this.body.bounce.x = 0.7;
+  this.body.gravity.y = 700;
+  this.body.drag.x = 50;
+  this.body.maxVelocity = new Phaser.Point(500, 500);
+  this.body.collideWorldBounds = true;
+  this.body.mass = 0.1;
 };
 
-Ball.prototype.getSprite = function () {
-  return this.sprite;
-}
+Ball.prototype = Object.create(Phaser.Sprite.prototype);
+Ball.prototype.constructor = Ball;
+// Ball.prototype.getSprite = function () {
+//   return this.sprite;
+// }
 
 module.exports = Ball;
 
 },{}],3:[function(require,module,exports){
 'use strict';
 
-var MainGuy = function (_game) {
-  this.game = _game;
-  this.sprite = this.game.add.sprite(0, 0, 'mainguy');
-  this.sprite.anchor.setTo(.5,.5);
-  this.game.physics.arcade.enable(this.sprite);
-  this.sprite.body.bounce.y = 0.2;
-  this.sprite.body.gravity.y = 700;
-  this.sprite.body.collideWorldBounds = true;
-  this.sprite.body.drag.x = 400;
-  this.sprite.body.mass = 1;
-  this.sprite.body.maxVelocity = new Phaser.Point(500, 500);
-  this.sprite.animations.add('left', [1, 2], 10, true);
-  this.sprite.animations.add('right', [1, 2], 10, true);
+var MainGuy = function (game, x, y, key) {
+  Phaser.Sprite.call(this, game, x, y, key);
+
+  //this.sprite = this.game.add.sprite(0, 0, 'mainguy');
+  this.anchor.setTo(.5,.5);
+  game.physics.arcade.enable(this);
+  this.body.bounce.y = 0.2;
+  this.body.gravity.y = 700;
+  this.body.collideWorldBounds = true;
+  this.body.drag.x = 400;
+  this.body.mass = 1;
+  this.body.maxVelocity = new Phaser.Point(500, 500);
+  this.animations.add('left', [1, 2], 10, true);
+  this.animations.add('right', [1, 2], 10, true);
 };
 
-MainGuy.prototype.getSprite = function () {
-  return this.sprite;
-}
+MainGuy.prototype = Object.create(Phaser.Sprite.prototype);
+MainGuy.prototype.constructor = MainGuy;
+
+// MainGuy.prototype.getSprite = function () {
+//   return this.sprite;
+// }
 
 module.exports = MainGuy;
 
@@ -129,10 +135,10 @@ module.exports = GameOver;
       this.game.physics.startSystem(Phaser.Physics.ARCADE);
       var b = this.game.add.image(0, 0, 'background');
       b.fixedToCamera = true;
-      this.mainguy = new MainGuy(this.game);
-      this.mainguy = this.mainguy.getSprite();
-      this.ball = new Ball(this.game);
-      this.ball = this.ball.getSprite();
+      this.mainguy = new MainGuy(this.game, 0, 0, 'mainguy');
+      this.ball = new Ball(this.game, 100, 0, 'ball');
+      this.game.add.existing(this.mainguy);
+      this.game.add.existing(this.ball);
 
       this.map = this.game.add.tilemap('tilemap');
       this.map.addTilesetImage('scifi', 'tileset');

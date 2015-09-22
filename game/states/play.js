@@ -11,10 +11,10 @@
       this.game.physics.startSystem(Phaser.Physics.ARCADE);
       var b = this.game.add.image(0, 0, 'background');
       b.fixedToCamera = true;
-      this.mainguy = new MainGuy(this.game);
-      this.mainguy = this.mainguy.getSprite();
-      this.ball = new Ball(this.game);
-      this.ball = this.ball.getSprite();
+      this.mainguy = new MainGuy(this.game, 0, 0, 'mainguy');
+      this.ball = new Ball(this.game, 100, 0, 'ball');
+      this.game.add.existing(this.mainguy);
+      this.game.add.existing(this.ball);
 
       this.map = this.game.add.tilemap('tilemap');
       this.map.addTilesetImage('scifi', 'tileset');
