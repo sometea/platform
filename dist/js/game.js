@@ -19,7 +19,6 @@ window.onload = function () {
 
 var Ball = function(game, x, y, key) {
   Phaser.Sprite.call(this, game, x, y, key);
-  // this.sprite = this.game.add.sprite(100, 0, 'ball');
   game.physics.arcade.enable(this);
   this.body.bounce.y = 0.7;
   this.body.bounce.x = 0.7;
@@ -32,9 +31,7 @@ var Ball = function(game, x, y, key) {
 
 Ball.prototype = Object.create(Phaser.Sprite.prototype);
 Ball.prototype.constructor = Ball;
-// Ball.prototype.getSprite = function () {
-//   return this.sprite;
-// }
+
 
 module.exports = Ball;
 
@@ -44,7 +41,6 @@ module.exports = Ball;
 var MainGuy = function (game, x, y, key) {
   Phaser.Sprite.call(this, game, x, y, key);
 
-  //this.sprite = this.game.add.sprite(0, 0, 'mainguy');
   this.anchor.setTo(.5,.5);
   game.physics.arcade.enable(this);
   this.body.bounce.y = 0.2;
@@ -60,9 +56,6 @@ var MainGuy = function (game, x, y, key) {
 MainGuy.prototype = Object.create(Phaser.Sprite.prototype);
 MainGuy.prototype.constructor = MainGuy;
 
-// MainGuy.prototype.getSprite = function () {
-//   return this.sprite;
-// }
 
 module.exports = MainGuy;
 
