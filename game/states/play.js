@@ -14,7 +14,7 @@
       b.fixedToCamera = true;
       this.mainguy = new MainGuy(this.game, 0, 0, 'mainguy');
       this.ball = new Ball(this.game, 100, 0, 'ball');
-      this.goal = new Goal(this.game, 200, 64, 'goal');
+      this.goal = new Goal(this.game, 200, 128, 'goal');
       this.game.add.existing(this.mainguy);
       this.game.add.existing(this.ball);
       this.game.add.existing(this.goal);
@@ -42,7 +42,9 @@
       this.game.physics.arcade.collide(this.mainguy, this.platforms);
       this.game.physics.arcade.collide(this.ball, this.platforms);
       this.game.physics.arcade.collide(this.mainguy, this.goal);
-      this.game.physics.arcade.collide(this.ball, this.goal);
+      var obj = this;
+      this.game.physics.arcade.overlap(this.ball, this.goal,
+                                       function () { obj.game.state.start('gameover') } );
       this.game.physics.arcade.collide(this.mainguy, this.blockLayer);
       this.game.physics.arcade.collide(this.ball, this.blockLayer);
       if (this.cursors.left.isDown) {
@@ -59,11 +61,8 @@
         this.mainguy.animations.stop();
         this.mainguy.frame = 0;
       }
-      if (this.cursors.up.isDown && (this.mainguy.body.onFloor() || this.mainguy.body.touching.down)) this.mainguy.body.velocity.y = -350;
-    },
-
-    clickListener: function() {
-      this.game.state.start('gameover');
+      if (this.cursors.up.isDown && (this.mainguy.body.onFloor() || this.mainguy.body.touching.down))
+        this.mainguy.body.velocity.y = -350;
     }
   };
 
