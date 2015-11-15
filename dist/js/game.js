@@ -14,7 +14,7 @@ window.onload = function () {
 
   game.state.start('boot');
 };
-},{"./states/boot":4,"./states/gameover":5,"./states/play":6,"./states/preload":7}],2:[function(require,module,exports){
+},{"./states/boot":5,"./states/gameover":6,"./states/play":7,"./states/preload":8}],2:[function(require,module,exports){
 'use strict';
 
 var Ball = function(game, x, y, key) {
@@ -38,6 +38,21 @@ module.exports = Ball;
 },{}],3:[function(require,module,exports){
 'use strict';
 
+var Goal = function(game, x, y, key) {
+  Phaser.Sprite.call(this, game, x, y, key);
+  game.physics.arcade.enable(this);
+
+  this.body.immovable = true;  // the goal will remain in place
+};
+
+Goal.prototype = Object.create(Phaser.Sprite.prototype);
+Goal.prototype.constructor = Goal;
+
+module.exports = Goal;
+
+},{}],4:[function(require,module,exports){
+'use strict';
+
 var MainGuy = function (game, x, y, key) {
   Phaser.Sprite.call(this, game, x, y, key);
 
@@ -59,7 +74,7 @@ MainGuy.prototype.constructor = MainGuy;
 
 module.exports = MainGuy;
 
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 
 'use strict';
 
@@ -86,7 +101,7 @@ Boot.prototype = {
 
 module.exports = Boot;
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 
 'use strict';
 function GameOver() {}
@@ -114,12 +129,13 @@ GameOver.prototype = {
 };
 module.exports = GameOver;
 
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 
   'use strict';
 
   var MainGuy = require('../objects/mainguy');
   var Ball = require('../objects/ball');
+  var Goal = require('../objects/goal');
 
   function Play() {};
 
@@ -130,12 +146,14 @@ module.exports = GameOver;
       b.fixedToCamera = true;
       this.mainguy = new MainGuy(this.game, 0, 0, 'mainguy');
       this.ball = new Ball(this.game, 100, 0, 'ball');
+      this.goal = new Goal(this.game, 200, 64, 'goal');
       this.game.add.existing(this.mainguy);
       this.game.add.existing(this.ball);
+      this.game.add.existing(this.goal);
 
       this.map = this.game.add.tilemap('tilemap');
       this.map.addTilesetImage('scifi', 'tileset');
-      this.map.setCollisionBetween(0,220);
+      this.map.setCollisionBetween(0, 220);
       this.blockLayer = this.map.createLayer('blocks');
       this.blockLayer.resizeWorld();
       this.game.camera.follow(this.mainguy);
@@ -155,6 +173,8 @@ module.exports = GameOver;
       this.game.physics.arcade.collide(this.mainguy, this.ball);
       this.game.physics.arcade.collide(this.mainguy, this.platforms);
       this.game.physics.arcade.collide(this.ball, this.platforms);
+      this.game.physics.arcade.collide(this.mainguy, this.goal);
+      this.game.physics.arcade.collide(this.ball, this.goal);
       this.game.physics.arcade.collide(this.mainguy, this.blockLayer);
       this.game.physics.arcade.collide(this.ball, this.blockLayer);
       if (this.cursors.left.isDown) {
@@ -181,7 +201,7 @@ module.exports = GameOver;
 
   module.exports = Play;
 
-},{"../objects/ball":2,"../objects/mainguy":3}],7:[function(require,module,exports){
+},{"../objects/ball":2,"../objects/goal":3,"../objects/mainguy":4}],8:[function(require,module,exports){
 
 'use strict';
 function Preload() {
@@ -198,6 +218,7 @@ Preload.prototype = {
     this.load.image('background', 'assets/background.png');
     this.load.image('block', 'assets/block.png');
     this.load.image('ball', 'assets/ball.png');
+    this.load.image('goal', 'assets/goal.png');
   },
   create: function() {
 

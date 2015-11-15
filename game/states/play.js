@@ -3,6 +3,7 @@
 
   var MainGuy = require('../objects/mainguy');
   var Ball = require('../objects/ball');
+  var Goal = require('../objects/goal');
 
   function Play() {};
 
@@ -13,12 +14,14 @@
       b.fixedToCamera = true;
       this.mainguy = new MainGuy(this.game, 0, 0, 'mainguy');
       this.ball = new Ball(this.game, 100, 0, 'ball');
+      this.goal = new Goal(this.game, 200, 64, 'goal');
       this.game.add.existing(this.mainguy);
       this.game.add.existing(this.ball);
+      this.game.add.existing(this.goal);
 
       this.map = this.game.add.tilemap('tilemap');
       this.map.addTilesetImage('scifi', 'tileset');
-      this.map.setCollisionBetween(0,220);
+      this.map.setCollisionBetween(0, 220);
       this.blockLayer = this.map.createLayer('blocks');
       this.blockLayer.resizeWorld();
       this.game.camera.follow(this.mainguy);
@@ -38,6 +41,8 @@
       this.game.physics.arcade.collide(this.mainguy, this.ball);
       this.game.physics.arcade.collide(this.mainguy, this.platforms);
       this.game.physics.arcade.collide(this.ball, this.platforms);
+      this.game.physics.arcade.collide(this.mainguy, this.goal);
+      this.game.physics.arcade.collide(this.ball, this.goal);
       this.game.physics.arcade.collide(this.mainguy, this.blockLayer);
       this.game.physics.arcade.collide(this.ball, this.blockLayer);
       if (this.cursors.left.isDown) {
