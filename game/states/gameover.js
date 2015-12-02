@@ -1,4 +1,5 @@
 'use strict';
+
 function GameOver() {}
 
 GameOver.prototype = {

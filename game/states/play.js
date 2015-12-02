@@ -1,4 +1,3 @@
-
 'use strict';
 
 var MainGuy = require('../objects/mainguy');
