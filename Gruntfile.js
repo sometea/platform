@@ -54,6 +54,9 @@ module.exports = function (grunt) {
       build: {
         src: ['game/main.js'],
         dest: 'dist/js/game.js'
+      },
+      options: {
+        transform: [['babelify', {presets: 'es2015'}]]
       }
     },
     jshint: {

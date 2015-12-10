@@ -11,7 +11,7 @@ function Play() {}
 Play.prototype = {
   create: function() {
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
-    var b = this.game.add.image(0, 0, 'background');
+    let b = this.game.add.image(0, 0, 'background');
     b.fixedToCamera = true;
     this.mainguy = new MainGuy(this.game, 0, 0, 'mainguy');
     this.ball = new Ball(this.game, 100, 0, 'ball');
