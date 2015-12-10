@@ -1,5 +1,7 @@
 'use strict';
 
+/* globals Phaser: false */
+
 function Boot() {
 }
 

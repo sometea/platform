@@ -1,9 +1,11 @@
 'use strict';
 
+/* globals Phaser: false */
+
 var MainGuy = function (game, x, y, key) {
   Phaser.Sprite.call(this, game, x, y, key);
 
-  this.anchor.setTo(.5,.5);
+  this.anchor.setTo(0.5, 0.5);
   game.physics.arcade.enable(this);
   this.body.bounce.y = 0.2;
   this.body.gravity.y = 700;

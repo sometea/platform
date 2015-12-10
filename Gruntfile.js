@@ -55,6 +55,12 @@ module.exports = function (grunt) {
         src: ['game/main.js'],
         dest: 'dist/js/game.js'
       }
+    },
+    jshint: {
+      options: {
+        jshintrc: true
+      },
+      src: ['game/**/*.js']
     }
   });
 

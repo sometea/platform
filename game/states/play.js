@@ -1,10 +1,12 @@
 'use strict';
 
+/* globals Phaser: false */
+
 var MainGuy = require('../objects/mainguy');
 var Ball = require('../objects/ball');
 var Goal = require('../objects/goal');
 
-function Play() {};
+function Play() {}
 
 Play.prototype = {
   create: function() {
@@ -43,26 +45,31 @@ Play.prototype = {
     this.game.physics.arcade.collide(this.mainguy, this.goal);
     var obj = this;
     this.game.physics.arcade.overlap(this.ball, this.goal,
-                                     function () { obj.game.state.start('gameover') } );
+                                     function () { obj.game.state.start('gameover'); } );
     this.game.physics.arcade.collide(this.mainguy, this.blockLayer);
     this.game.physics.arcade.collide(this.ball, this.blockLayer);
     if (this.cursors.left.isDown) {
       this.mainguy.body.velocity.x = -150;
-      if (this.mainguy.scale.x > 0) this.mainguy.scale.x = - this.mainguy.scale.x;
+      if (this.mainguy.scale.x > 0) {
+         this.mainguy.scale.x = - this.mainguy.scale.x;
+       }
       this.mainguy.animations.play('left');
     }
     else if (this.cursors.right.isDown) {
       this.mainguy.body.velocity.x = 150;
-      if (this.mainguy.scale.x < 0) this.mainguy.scale.x = - this.mainguy.scale.x;
+      if (this.mainguy.scale.x < 0) {
+        this.mainguy.scale.x = - this.mainguy.scale.x;
+      }
       this.mainguy.animations.play('right');
     }
     else {
       this.mainguy.animations.stop();
       this.mainguy.frame = 0;
     }
-    if (this.cursors.up.isDown && (this.mainguy.body.onFloor() || this.mainguy.body.touching.down))
+    if (this.cursors.up.isDown && (this.mainguy.body.onFloor() || this.mainguy.body.touching.down)) {
       this.mainguy.body.velocity.y = -350;
     }
+  }
 };
 
 module.exports = Play;

@@ -1,5 +1,7 @@
 'use strict';
 
+/* globals Phaser: false */
+
 var Goal = function(game, x, y, key) {
   Phaser.Sprite.call(this, game, x, y, key);
   game.physics.arcade.enable(this);
