@@ -19,7 +19,4 @@ class MainGuy extends Phaser.Sprite {
   }
 }
 
-// MainGuy.prototype = Object.create(Phaser.Sprite.prototype);
-// MainGuy.prototype.constructor = MainGuy;
-
 export default MainGuy;

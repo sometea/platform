@@ -5,5 +5,3 @@ and then move it into a goal.
 Gravity affects us all.
 
 ## To do
-- get rid of grunt, do everything with npm scripts
-- switch to webpack
