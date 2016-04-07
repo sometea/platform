@@ -4,6 +4,7 @@
   "scripts": {
     "babel": "babel game --out-dir dist",
     "webpack": "webpack",
+    "lint": "eslint **/**/*.js",
     "server": "webpack-dev-server --content-base dist --progress --colors"
   },
   "devDependencies": {
@@ -18,6 +19,9 @@
     "copy-webpack-plugin": "^1.1.1",
     "es6-promise": "^3.1.2",
     "es6-shim": "^0.33.13",
+    "eslint": "^2.7.0",
+    "eslint-config-airbnb": "^6.2.0",
+    "eslint-plugin-react": "^4.3.0",
     "matchdep": "~0.1.2",
     "moment": "~2.0.0",
     "p2": "^0.7.1",

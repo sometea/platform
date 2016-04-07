@@ -1,4 +1,4 @@
-'use strict';
+
 
 import 'pixi.js';
 import 'p2';
@@ -12,9 +12,9 @@ import Preload from './states/preload';
 
 /* globals window: false, Phaser: false */
 
-//global variables
-window.onload = function () {
-  var game = new Phaser.Game(600, 400, Phaser.AUTO, 'platform');
+// global variables
+window.onload = function onload() {
+  const game = new Phaser.Game(600, 400, Phaser.AUTO, 'platform');
 
   // Game States
   game.state.add('boot', Boot);
