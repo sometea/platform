@@ -1,5 +1,9 @@
 'use strict';
 
+import 'pixi.js';
+import 'p2';
+import 'phaser';
+
 /* globals window: false, Phaser: false */
 
 //global variables
@@ -11,7 +15,7 @@ window.onload = function () {
   game.state.add('gameover', require('./states/gameover'));
   game.state.add('play', require('./states/play'));
   game.state.add('preload', require('./states/preload'));
-  
+
 
   game.state.start('boot');
 };
