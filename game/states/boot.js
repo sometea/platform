@@ -2,14 +2,12 @@
 
 /* globals Phaser: false */
 
-function Boot() {
-}
+class Boot {
+  preload() {
 
-Boot.prototype = {
-  preload: function() {
+  }
 
-  },
-  create: function() {
+  create() {
     this.game.input.maxPointers = 1;
     this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     this.game.scale.minWidth = 900;
@@ -21,6 +19,6 @@ Boot.prototype = {
     this.game.scale.refresh();
     this.game.state.start('preload');
   }
-};
+}
 
-module.exports = Boot;
+export default Boot;

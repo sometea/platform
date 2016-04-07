@@ -2,14 +2,17 @@
 
 /* globals Phaser: false */
 
-var MainGuy = require('../objects/mainguy');
-var Ball = require('../objects/ball');
-var Goal = require('../objects/goal');
+// var MainGuy = require('../objects/mainguy');
+import MainGuy from '../objects/mainguy';
+import Ball from '../objects/ball';
+import Goal from '../objects/goal';
 
-function Play() {}
+class Play {
+  constructor() {
 
-Play.prototype = {
-  create: function() {
+  }
+
+  create() {
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
     let b = this.game.add.image(0, 0, 'background');
     b.fixedToCamera = true;
@@ -36,9 +39,9 @@ Play.prototype = {
     }
 
     this.cursors = this.game.input.keyboard.createCursorKeys();
-  },
+  }
 
-  update: function() {
+  update() {
     this.game.physics.arcade.collide(this.mainguy, this.ball);
     this.game.physics.arcade.collide(this.mainguy, this.platforms);
     this.game.physics.arcade.collide(this.ball, this.platforms);
@@ -70,6 +73,6 @@ Play.prototype = {
       this.mainguy.body.velocity.y = -350;
     }
   }
-};
+}
 
-module.exports = Play;
+export default Play;
