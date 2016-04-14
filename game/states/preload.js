@@ -1,5 +1,3 @@
-'use strict';
-
 /* globals Phaser: false */
 
 class Preload {
@@ -24,7 +22,7 @@ class Preload {
   }
 
   update() {
-    if(!!this.ready) {
+    if (!!this.ready) {
       this.game.state.start('play');
     }
   }

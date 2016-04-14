@@ -1,9 +1,8 @@
-'use strict';
 
 /* globals Phaser: false */
 
 class Ball extends Phaser.Sprite {
-  constructor(game, x, y, key ){
+  constructor(game, x, y, key) {
     super(game, x, y, key);
     game.physics.arcade.enable(this);
     this.body.bounce.y = 0.7;

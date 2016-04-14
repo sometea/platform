@@ -1,5 +1,3 @@
-'use strict';
-
 /* globals Phaser: false */
 
 class Boot {

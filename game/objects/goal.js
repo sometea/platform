@@ -1,4 +1,3 @@
-'use strict';
 
 /* globals Phaser: false */
 

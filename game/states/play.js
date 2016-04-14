@@ -1,5 +1,3 @@
-'use strict';
-
 /* globals Phaser: false */
 
 // var MainGuy = require('../objects/mainguy');
@@ -8,13 +6,9 @@ import Ball from '../objects/ball';
 import Goal from '../objects/goal';
 
 class Play {
-  constructor() {
-
-  }
-
   create() {
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
-    let b = this.game.add.image(0, 0, 'background');
+    const b = this.game.add.image(0, 0, 'background');
     b.fixedToCamera = true;
     this.mainguy = new MainGuy(this.game, 0, 0, 'mainguy');
     this.ball = new Ball(this.game, 100, 0, 'ball');
@@ -32,8 +26,8 @@ class Play {
 
     this.platforms = this.game.add.group();
     this.platforms.enableBody = true;
-    for (var i=0; i<4; i++) {
-      var block = this.platforms.create(i*230, this.game.world.height - 25, 'block');
+    for (let i = 0; i < 4; i++) {
+      const block = this.platforms.create(i * 230, this.game.world.height - 25, 'block');
       block.scale.setTo(10, 1);
       block.body.immovable = true;
     }
@@ -46,30 +40,29 @@ class Play {
     this.game.physics.arcade.collide(this.mainguy, this.platforms);
     this.game.physics.arcade.collide(this.ball, this.platforms);
     this.game.physics.arcade.collide(this.mainguy, this.goal);
-    var obj = this;
+    const obj = this;
     this.game.physics.arcade.overlap(this.ball, this.goal,
-                                     function () { obj.game.state.start('gameover'); } );
+                                     () => { obj.game.state.start('gameover'); });
     this.game.physics.arcade.collide(this.mainguy, this.blockLayer);
     this.game.physics.arcade.collide(this.ball, this.blockLayer);
     if (this.cursors.left.isDown) {
       this.mainguy.body.velocity.x = -150;
       if (this.mainguy.scale.x > 0) {
-         this.mainguy.scale.x = - this.mainguy.scale.x;
-       }
+        this.mainguy.scale.x = - this.mainguy.scale.x;
+      }
       this.mainguy.animations.play('left');
-    }
-    else if (this.cursors.right.isDown) {
+    } else if (this.cursors.right.isDown) {
       this.mainguy.body.velocity.x = 150;
       if (this.mainguy.scale.x < 0) {
         this.mainguy.scale.x = - this.mainguy.scale.x;
       }
       this.mainguy.animations.play('right');
-    }
-    else {
+    } else {
       this.mainguy.animations.stop();
       this.mainguy.frame = 0;
     }
-    if (this.cursors.up.isDown && (this.mainguy.body.onFloor() || this.mainguy.body.touching.down)) {
+    if (this.cursors.up.isDown &&
+        (this.mainguy.body.onFloor() || this.mainguy.body.touching.down)) {
       this.mainguy.body.velocity.y = -350;
     }
   }

@@ -4,7 +4,7 @@
   "scripts": {
     "babel": "babel game --out-dir dist",
     "webpack": "webpack",
-    "lint": "eslint **/**/*.js",
+    "lint": "eslint game/**/*.js",
     "server": "webpack-dev-server --content-base dist --progress --colors"
   },
   "devDependencies": {
