@@ -5,7 +5,7 @@
     "babel": "babel game --out-dir dist",
     "webpack": "webpack",
     "lint": "eslint game/**/*.js",
-    "server": "webpack-dev-server --content-base dist --progress --colors"
+    "start": "webpack-dev-server --content-base dist --progress --colors"
   },
   "devDependencies": {
     "babel-cli": "^6.6.5",
@@ -34,8 +34,5 @@
   },
   "engines": {
     "node": ">=0.8.0"
-  },
-  "dependencies": {
-    "expose-loader": "^0.7.1"
   }
 }
